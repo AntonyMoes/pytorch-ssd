@@ -243,6 +243,11 @@ if __name__ == '__main__':
                                         transform=test_transform, target_transform=target_transform,
                                         dataset_type="test")
         logging.info(val_dataset)
+    elif args.dataset_type == 'iod':
+        val_dataset = IODDataset(dataset_path,
+                                        transform=test_transform, target_transform=target_transform,
+                                        dataset_type="test")
+        logging.info(val_dataset)
     logging.info("validation dataset size: {}".format(len(val_dataset)))
 
     val_loader = DataLoader(val_dataset, args.batch_size,

@@ -11,8 +11,18 @@ class IODDataset(OpenImagesDataset):
         boxes_num = 0
         data = []
 
-        for i in range(1, 7):
-            root = ET.parse(f'{self.root}annotation/annotation_s{i}.xml').getroot()
+        start = 0
+        finish = 0
+
+        if self.dataset_type == 'train':
+            start = 1
+            finish = 6
+        elif self.dataset_type == 'test':
+            start = 6
+            finish = 7
+
+        for i in range(start, finish):
+            root = ET.parse(f'{self.root}/annotation/annotation_s{i}.xml').getroot()
             for child in root:
                 if child.tag != 'images':
                     continue
@@ -20,7 +30,7 @@ class IODDataset(OpenImagesDataset):
                 images_tag = child
                 for image_tag in images_tag:
 
-                    image_file = f'{self.root}sequence_{i}/' + image_tag.attrib['file']
+                    image_file = f'{self.root}/sequence_{i}/' + image_tag.attrib['file']
 
                     img = cv2.imread(image_file)
 
@@ -70,8 +80,3 @@ class IODDataset(OpenImagesDataset):
         else:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         return image
-
-
-
-
-
