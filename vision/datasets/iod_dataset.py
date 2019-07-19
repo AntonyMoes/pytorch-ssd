@@ -11,7 +11,17 @@ class IODDataset(OpenImagesDataset):
         boxes_num = 0
         data = []
 
-        for i in range(1, 7):
+        start = 0
+        finish = 0
+
+        if self.dataset_type == 'train':
+            start = 0
+            finish = 6
+        elif self.dataset_type == 'test':
+            start = 6
+            finish = 7
+
+        for i in range(start, finish):
             root = ET.parse(f'{self.root}/annotation/annotation_s{i}.xml').getroot()
             for child in root:
                 if child.tag != 'images':
