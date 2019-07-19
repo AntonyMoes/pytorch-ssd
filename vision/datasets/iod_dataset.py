@@ -15,7 +15,7 @@ class IODDataset(OpenImagesDataset):
         finish = 0
 
         if self.dataset_type == 'train':
-            start = 0
+            start = 1
             finish = 6
         elif self.dataset_type == 'test':
             start = 6
