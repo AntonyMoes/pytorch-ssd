@@ -80,8 +80,3 @@ class IODDataset(OpenImagesDataset):
         else:
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         return image
-
-
-
-
-
