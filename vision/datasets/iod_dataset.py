@@ -12,7 +12,7 @@ class IODDataset(OpenImagesDataset):
         data = []
 
         for i in range(1, 7):
-            root = ET.parse(f'{self.root}annotation/annotation_s{i}.xml').getroot()
+            root = ET.parse(f'{self.root}/annotation/annotation_s{i}.xml').getroot()
             for child in root:
                 if child.tag != 'images':
                     continue
@@ -20,7 +20,7 @@ class IODDataset(OpenImagesDataset):
                 images_tag = child
                 for image_tag in images_tag:
 
-                    image_file = f'{self.root}sequence_{i}/' + image_tag.attrib['file']
+                    image_file = f'{self.root}/sequence_{i}/' + image_tag.attrib['file']
 
                     img = cv2.imread(image_file)
 
